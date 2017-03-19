@@ -2,10 +2,21 @@
 
 namespace Store.App.Controllers
 {
-    public class HomeController : Controller
+    using System.Linq;
+    using Data;
+
+    public class HomeController : BaseController
     {
+        public HomeController(StoreContext data) : base(data)
+        {
+        }
+
         public ActionResult Index()
         {
+            //test base controller
+            this.ViewData["users"] = this.Data.Users.ToList();
+            this.ViewData["currentUser"] = this.UserProfile;
+
             return this.View();
         }
 
