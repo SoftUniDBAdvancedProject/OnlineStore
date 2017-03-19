@@ -1,21 +1,17 @@
 ﻿namespace Store.Models
 {
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Cart
     {
-        public Cart()
-        {
-            this.Products = new HashSet<CartProduct>();
-        }
+        private ICollection<CartProduct> products;
+
         public int Id { get; set; }
 
         public string UserId { get; set; }
 
         public virtual User User { get; set; }
 
-        public virtual ICollection<CartProduct> Products{ get; set; }
+        public virtual ICollection<CartProduct> Products => this.products ?? (this.products = new HashSet<CartProduct>());
     }
 }

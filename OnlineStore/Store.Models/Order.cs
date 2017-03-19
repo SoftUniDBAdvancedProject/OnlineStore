@@ -4,16 +4,14 @@
 
     public class Order
     {
-        public Order()
-        {
-            this.Products = new HashSet<OrderProduct>();
-        }
+        private ICollection<OrderProduct> products;
+
         public int Id { get; set; }
 
         public int UserId { get; set; }
 
         public virtual User User { get; set; }
 
-        public virtual ICollection<OrderProduct> Products { get; set; }
+        public virtual ICollection<OrderProduct> Products => this.products ?? (this.products = new HashSet<OrderProduct>());
     }
 }

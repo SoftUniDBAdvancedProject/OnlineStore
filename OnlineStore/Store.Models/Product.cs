@@ -12,7 +12,6 @@
 
         public double Quantity { get; set; }
 
-        //Warranty in months
         public int Warranty { get; set; }
 
         public int CountryId { get; set; }
