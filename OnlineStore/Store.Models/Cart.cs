@@ -6,6 +6,10 @@
 
     public class Cart
     {
+        public Cart()
+        {
+            this.Products = new HashSet<CartProduct>();
+        }
         public int Id { get; set; }
 
         public string UserId { get; set; }

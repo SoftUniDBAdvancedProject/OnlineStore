@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Store.Data</RootNamespace>
     <AssemblyName>Store.Data</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -67,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Store.Models\Store.Models.csproj">
-      <Project>{308B9127-315B-4316-9A5C-539A2F3D6E8D}</Project>
+      <Project>{308b9127-315b-4316-9a5c-539a2f3d6e8d}</Project>
       <Name>Store.Models</Name>
     </ProjectReference>
   </ItemGroup>

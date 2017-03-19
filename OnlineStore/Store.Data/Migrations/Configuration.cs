@@ -17,6 +17,14 @@ namespace Store.Data.Migrations
 
         protected override void Seed(StoreContext context)
         {
+            if (!context.Roles.Any(r => r.Name == "User"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "User" };
+                manager.Create(role);
+            }
+
             if (!context.Roles.Any(r => r.Name == "Admin"))
             {
                 var store = new RoleStore<IdentityRole>(context);
@@ -24,7 +32,7 @@ namespace Store.Data.Migrations
                 var role = new IdentityRole { Name = "Admin" };
                 manager.Create(role);
             }
-
+            
             if (!context.Users.Any(u => u.UserName == "admin@gmail.com"))
             {
                 var userStore = new UserStore<User>(context);

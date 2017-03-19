@@ -45,9 +45,10 @@
             modelBuilder.Entity<CartProduct>()
                .HasKey(op => new { op.CartId, op.ProductId });
 
-            modelBuilder.Entity<Cart>()
-                .HasRequired(u => u.User)
-                .WithOptional(c => c.Cart);
+            modelBuilder.Entity<User>()
+                .HasOptional(c => c.Cart)
+                .WithRequired(u => u.User);
+                
 
             base.OnModelCreating(modelBuilder);
         }
