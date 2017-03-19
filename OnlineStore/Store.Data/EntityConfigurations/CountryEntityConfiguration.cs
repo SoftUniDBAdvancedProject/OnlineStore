@@ -10,8 +10,8 @@
         public CountryEntityConfiguration()
         {
             this.Property(c => c.Name)
-              .IsRequired()
-              .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute { IsUnique = true }));
+                .HasColumnType("nvarchar(255)")
+               .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Name") { IsUnique = true })); ;
         }
     }
 }
