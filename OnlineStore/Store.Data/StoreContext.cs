@@ -1,7 +1,10 @@
 ﻿namespace Store.Data
 {
     using System;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
+    using System.Data.Entity.Infrastructure.Annotations;
+    using EntityConfigurations;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Migrations;
     using Models;
@@ -39,16 +42,10 @@
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<OrderProduct>()
-                .HasKey(op => new {op.OrderId, op.ProductId});
-
-            modelBuilder.Entity<CartProduct>()
-               .HasKey(op => new { op.CartId, op.ProductId });
-
-            modelBuilder.Entity<User>()
-                .HasOptional(c => c.Cart)
-                .WithRequired(u => u.User);
-                
+            modelBuilder.Configurations.Add(new OrderProductEntityConfiguration());
+            modelBuilder.Configurations.Add(new CartProductEntityConfiguration());
+            modelBuilder.Configurations.Add(new UserEntityConfiguration());
+            modelBuilder.Configurations.Add(new CountryEntityConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
