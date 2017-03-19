@@ -12,7 +12,7 @@
     public class HomeController : BaseController
     {
         // GET: Admin/Products
-        public HomeController(StoreContext data) : base(data)
+        public HomeController(Context data) : base(data)
         {
         }
 

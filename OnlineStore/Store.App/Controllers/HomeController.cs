@@ -7,7 +7,7 @@ namespace Store.App.Controllers
 
     public class HomeController : BaseController
     {
-        public HomeController(StoreContext data) : base(data)
+        public HomeController(Context data) : base(data)
         {
         }
 
@@ -16,7 +16,6 @@ namespace Store.App.Controllers
             //test base controller
             this.ViewData["users"] = this.Data.Users.ToList();
             this.ViewData["currentUser"] = this.UserProfile;
-
             return this.View();
         }
 

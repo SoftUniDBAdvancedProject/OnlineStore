@@ -9,18 +9,18 @@
 
     public class BaseController : Controller
     {
-        protected BaseController(StoreContext data)
+        protected BaseController(Context data)
         {
             this.Data = data;
         }
 
-        protected BaseController(StoreContext data, User userProfile)
+        protected BaseController(Context data, User userProfile)
             : this(data)
         {
             this.UserProfile = userProfile;
         }
 
-        protected StoreContext Data { get; private set; }
+        protected Context Data { get; private set; }
 
         protected User UserProfile { get; private set; }
 
