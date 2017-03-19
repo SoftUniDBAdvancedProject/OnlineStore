@@ -9,9 +9,13 @@
     {
         public CountryEntityConfiguration()
         {
-            this.Property(c => c.Name)
-                .HasColumnType("nvarchar(255)")
-               .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute("IX_Name") { IsUnique = true })); ;
+            this.Property(t => t.Name)
+               .IsRequired()
+               .HasMaxLength(255)
+               .HasColumnAnnotation(
+                   IndexAnnotation.AnnotationName,
+                   new IndexAnnotation(
+                       new IndexAttribute("IX_Name") { IsUnique = true }));
         }
     }
 }

@@ -45,6 +45,7 @@
             modelBuilder.Configurations.Add(new OrderProductEntityConfiguration());
             modelBuilder.Configurations.Add(new CartProductEntityConfiguration());
             modelBuilder.Configurations.Add(new UserEntityConfiguration());
+            modelBuilder.Configurations.Add(new CountryEntityConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
