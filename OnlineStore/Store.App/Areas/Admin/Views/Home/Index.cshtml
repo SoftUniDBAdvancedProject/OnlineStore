@@ -1,5 +1,9 @@
 ﻿@model Store.ViewModels.ProductViewModel
 
+@{
+    ViewBag.Title = "Admin Panel";
+}
+
 @using (Html.BeginForm())
 {
   <!-- BEGIN HIDDEN FIELDS AREA -->
@@ -171,21 +175,4 @@
     }
 }
 
-@section scripts {
-
-    <script>
-    $(document).ready(function () {
-      $("[data-pdsa-action]").on("click", function (e) {
-        e.preventDefault();
-
-        $("#EventCommand").val(
-          $(this).data("pdsa-action"));
-
-        $("#EventArgument").val(
-          $(this).attr("data-pdsa-val"));
-
-        $("form").submit();
-      });
-    });
-    </script>
-}
+@Scripts.Render("~/bundles/admin")
