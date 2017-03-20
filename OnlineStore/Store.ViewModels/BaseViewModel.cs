@@ -10,12 +10,19 @@
         }
 
         public List<KeyValuePair<string, string>> ValidationErrors { get; set; }
+
         public string Mode { get; set; }
+
         public bool IsValid { get; set; }
+
         public string EventCommand { get; set; }
+
         public string EventArgument { get; set; }
+
         public bool IsDetailAreaVisible { get; set; }
+
         public bool IsListAreaVisible { get; set; }
+
         public bool IsSearchAreaVisible { get; set; }
 
         protected virtual void Init()
@@ -101,22 +108,16 @@
 
         protected virtual void Add()
         {
-
-            // Put ViewModel into Add Mode
             this.AddMode();
         }
 
         protected virtual void Edit()
         {
-
-            // Put View Model into Edit Mode
             this.EditMode();
         }
 
         protected virtual void Delete()
         {
-
-            // Set back to normal mode
             this.ListMode();
         }
 
@@ -143,6 +144,5 @@
         protected virtual void ResetSearch()
         {
         }
-
     }
 }

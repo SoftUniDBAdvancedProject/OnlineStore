@@ -39,8 +39,7 @@
 
         public Product Get(int productId)
         {
-            List<Product> ret =
-              new List<Product>();
+            List<Product> ret =new List<Product>();
             Product entity = null;
 
             // TODO: Add data access method here
@@ -111,6 +110,7 @@
             {
                 new Product()
                 {
+                    Id=1,
                     Category = new Category()
                     {
                         Name = "Cat1"
@@ -124,6 +124,7 @@
                 },
                 new Product()
                 {
+                     Id=2,
                     Category = new Category()
                     {
                         Name = "Cat2"
@@ -137,6 +138,7 @@
                 },
                 new Product()
                 {
+                     Id=3,
                     Category = new Category()
                     {
                         Name = "Cat3"
