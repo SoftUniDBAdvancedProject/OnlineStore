@@ -6,7 +6,7 @@ namespace Store.Data.Migrations
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Store.Data.StoreContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<StoreContext>
     {
         public Configuration()
         {

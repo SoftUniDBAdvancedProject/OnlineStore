@@ -207,10 +207,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Details.cshtml" />
-    <Content Include="Areas\Admin\Views\Home\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -280,6 +276,14 @@
     <ProjectReference Include="..\Store.Models\Store.Models.csproj">
       <Project>{308b9127-315b-4316-9a5c-539a2f3d6e8d}</Project>
       <Name>Store.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Store.Services\Store.Services.csproj">
+      <Project>{1ad36e2f-29ce-4cb8-92aa-da5fe584945d}</Project>
+      <Name>Store.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Store.ViewModels\Store.ViewModels.csproj">
+      <Project>{94e7bfd7-784f-4dc3-a105-3515c892df17}</Project>
+      <Name>Store.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
