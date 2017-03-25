@@ -5,7 +5,7 @@ namespace Store.App.App_Start
 {
     using System;
     using System.Web;
-    using Data;
+
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
@@ -61,7 +61,6 @@ namespace Store.App.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<Context>().To<StoreContext>();
         }        
     }
 }
