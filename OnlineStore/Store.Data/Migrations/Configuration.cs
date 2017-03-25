@@ -23,6 +23,67 @@ namespace Store.Data.Migrations
         {
             this.SeedAdmin(context);
             this.SeedCountries(context);
+            this.SeedCategories(context);
+        }
+
+        private void SeedCategories(StoreContext context)
+        {
+            var books = new Category()
+            {
+                Name = "Books and consumptives",
+                PicturePath = "books-and-consumptives.png"
+            };
+
+            var pc = new Category()
+            {
+                Name = "Computers and Periphery",
+                PicturePath = "computers-and-periphery.png"
+            };
+
+            var electric = new Category()
+            {
+                Name = "Electric Appliances",
+                PicturePath = "electric-appliances.png"
+            };
+
+            var fash = new Category()
+            {
+                Name = "Fashion",
+                PicturePath = "fashion.png"
+            };
+            
+            var home = new Category()
+            {
+                Name = "Home and Furniture",
+                PicturePath = "home-furniture.png"
+            };
+
+            var mobile = new Category()
+            {
+                Name = "Mobile Devicec",
+                PicturePath = "mobile-devicec.png"
+            };
+
+            var photo = new Category()
+            {
+                Name = "Photo and Video",
+                PicturePath = "photo.png"
+            };
+
+            var sport = new Category()
+            {
+                Name = "Sport",
+                PicturePath = "sports.png"
+            };
+
+            var toys = new Category()
+            {
+                Name = "Toys",
+                PicturePath = "toys.png"
+            };
+
+            context.Categories.AddOrUpdate(c=>c.Name, toys,sport,photo,mobile,home,fash,electric,pc,books);
+            context.SaveChanges();
         }
 
         private void SeedCountries(StoreContext context)
