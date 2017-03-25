@@ -65,7 +65,11 @@
 {"name": "Egypt", "code": "EG"},
 {"name": "El Salvador", "code": "SV"},
 {"name": "Equatorial Guinea", "code": "GQ"},
-{"name": "Eritrea", "code": "ER"},
+  {
+    "name": "Eritrea",
+    "code": "ER"
+  },
+  {"name": "England", "code": "EN"},
 {"name": "Estonia", "code": "EE"},
 {"name": "Ethiopia", "code": "ET"},
 {"name": "Falkland Islands (Malvinas)", "code": "FK"},
