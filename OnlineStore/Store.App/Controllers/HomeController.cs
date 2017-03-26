@@ -4,6 +4,7 @@ namespace Store.App.Controllers
 {
     using System.Linq;
     using Data;
+    using Services;
 
     public class HomeController : BaseController
     {
@@ -14,9 +15,9 @@ namespace Store.App.Controllers
         public ActionResult Index()
         {
             //test base controller
-            this.ViewData["users"] = this.Data.Users.ToList();
-            this.ViewData["currentUser"] = this.UserProfile;
-            return this.View();
+            var manager = new ProductService();
+            var products = manager.Get().OrderByDescending(c => c.Id).Take(3).ToList();
+            return this.View(products);
         }
 
         public ActionResult About()

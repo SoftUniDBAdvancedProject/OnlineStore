@@ -1,22 +1,36 @@
 ﻿@using Store.Models
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home";
 }
 
 <div class="row">
+    <div class="col-lg-3">
+        <h4>Latest products: </h4>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        @foreach (var product in Model)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>@product.Name</td>
+                                    <td>@product.Description</td>
+                                </tr>
+                            </tbody>
 
-    @if (ViewData["currentUser"] != null)
-    {
-        var user = (User)ViewData["currentUser"];
-        <h2>Currently logged in user: @user.UserName</h2>
-    }
-</div>
+                        }
+                    </table>
+                </div>
+            </div>
 
+        </div>
 
-<div class="row">
-
-    @foreach (var user in (List<User>)ViewData["users"])
-    {
-        <h2>@user.UserName</h2>
-    }
+    </div>
 </div>

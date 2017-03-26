@@ -349,9 +349,7 @@ namespace Store.Data.Migrations
                     PicturePath = "stool.jpg"
                 }
             };
-            //var serializer = new JavaScriptSerializer();
-            //string json = HttpContext.Current.Server.MapPath(@"/Content/DataImports/products.json");
-            //var products = serializer.Deserialize<List<Product>>(json);
+
             foreach (var product in products)
             {
                 context.Products.AddOrUpdate(c => c.Name, product);
