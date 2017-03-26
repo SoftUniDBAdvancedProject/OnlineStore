@@ -130,7 +130,7 @@
         {
             ProductService mgr = new ProductService();
 
-            this.Products = mgr.Get(this.SearchEntity);
+            this.Products = mgr.Get(this.SearchEntity).OrderByDescending(p=>p.Id).ToList();
 
             base.Get();
         }
