@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
     using Models;
     using Services;
@@ -18,6 +19,23 @@
         public List<SelectListItem> Categories { get; set; }
 
         public List<SelectListItem> Countries { get; set; }
+
+        public HttpPostedFileBase File { get; set; }
+
+        public string PicturePath
+        {
+            get
+            {
+                if (this.Categories == null || this.Entity.CategoryId == 0)
+                {
+                    return null;
+                }
+
+                var category = this.Categories.First(x => x.Value == this.Entity.CategoryId.ToString()).Text;
+                string nameAndLocation = "/Content/Images/Products/" + category + "/";
+                return nameAndLocation;
+            }
+        }
 
         protected override void Init()
         {
@@ -46,11 +64,13 @@
             base.Edit();
         }
 
+
         protected override void Save()
         {
             ProductService mgr = new ProductService();
             if (this.IsValid)
             {
+                this.SavePicture();
                 if (this.Mode == "Add")
                 {
                     mgr.Insert(this.Entity);
@@ -64,6 +84,24 @@
             this.ValidationErrors = mgr.ValidationErrors;
 
             base.Save();
+        }
+
+        private void SavePicture()
+        {
+            if (this.File == null)
+            {
+                return;
+            }
+
+            try
+            {
+                this.File.SaveAs(HttpContext.Current.Server.MapPath(this.PicturePath) + this.File.FileName);
+            }
+            catch (Exception e)
+            {
+                this.IsValid = false;
+                this.ValidationErrors.Add(new KeyValuePair<string, string>("Picture", e.Message));
+            }
         }
 
         protected override void Delete()

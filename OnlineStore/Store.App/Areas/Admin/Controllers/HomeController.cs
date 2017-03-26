@@ -19,6 +19,12 @@
         [HttpPost]
         public ActionResult Index(ProductViewModel vm)
         {
+            if (vm.File != null)
+            {
+                byte[] uploadedFile = new byte[vm.File.InputStream.Length];
+                vm.File.InputStream.Read(uploadedFile, 0, uploadedFile.Length);
+            }
+
             vm.IsValid = this.ModelState.IsValid;
             vm.HandleRequest();
 

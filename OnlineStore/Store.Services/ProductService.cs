@@ -62,6 +62,7 @@
                     context.Products.Attach(entity);
                     var entry = context.Entry(entity);
                     entry.Property(e => e.Name).IsModified = true;
+                    entry.Property(e => e.Description).IsModified = true;
                     entry.Property(e => e.PicturePath).IsModified = true;
                     entry.Property(e => e.Price).IsModified = true;
                     entry.Property(e => e.Quantity).IsModified = true;
@@ -94,18 +95,18 @@
         {
             this.ValidationErrors.Clear();
 
-            if (!string.IsNullOrEmpty(entity.Name))
-            {
-                if (entity.Name.ToLower() ==
-                    entity.Name)
-                {
-                    this.ValidationErrors.Add(new
-                      KeyValuePair<string, string>("ProductName",
-                      "Product must not be all lower case."));
-                }
-            }
+            //if (!string.IsNullOrEmpty(entity.Name))
+            //{
+            //    if (entity.Name.ToLower() ==
+            //        entity.Name)
+            //    {
+            //        this.ValidationErrors.Add(new
+            //          KeyValuePair<string, string>("ProductName",
+            //          "Product must not be all lower case."));
+            //    }
+            //}
 
-            return (this.ValidationErrors.Count == 0);
+            return this.ValidationErrors.Count == 0;
         }
 
         public bool Insert(Product entity)
@@ -119,16 +120,7 @@
                 using (StoreContext ctx = new StoreContext())
                 {
                     ctx.Products.Add(entity);
-
-                    try
-                    {
-                        ctx.SaveChanges();
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                        throw;
-                    }
+                    ctx.SaveChanges();
                 }
             }
 
