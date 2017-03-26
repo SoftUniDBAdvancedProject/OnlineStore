@@ -10,7 +10,6 @@ namespace Store.Data.Migrations
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
-    using Newtonsoft.Json;
 
     internal sealed class Configuration : DbMigrationsConfiguration<StoreContext>
     {
@@ -31,303 +30,334 @@ namespace Store.Data.Migrations
 
         private void SeedProducts(StoreContext context)
         {
-
-            var product1 = new Product()
+            //var products = new List<Product>
+            //{
+            //    new Product()
+            //    {
+            //        Name = "Harry Potter and The Deathly Hallows",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Ireland"),
+            //        CountryId = context.Countries.FirstOrDefault(c => c.Name == "Ireland").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Books and consumptives"),
+            //        CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Books and consumptives").Id,
+            //        Price = 20,
+            //        Description =
+            //            "Harry Potter and the Deathly Hallows is the final book of the LEGENDARY collection Harry Potter by JK Rowling",
+            //        Quantity = 100,
+            //        PicturePath = "HarryPotterAndTheDeathlyHallows.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "It",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Ireland"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Ireland").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Books and consumptives"),
+            //        CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Books and consumptives").Id,
+            //        Price = 19.99m,
+            //        Description = "Stephen King's IT is a best-seller.",
+            //        Quantity = 150,
+            //        PicturePath = "StephenKingIt.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Hunger Games (All Books)",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Ireland"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Ireland").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Books and consumptives"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Books and consumptives").Id,
+            //        Price = 20,
+            //        Description =
+            //            "Harry Potter and the Deathly Hallows is the final book of the LEGENDARY collection Harry Potter",
+            //        Quantity = 100,
+            //        PicturePath = "HarryPotterAndTheDeathlyHallows.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Alienware 17 inches",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Japan"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Japan").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Computers and Periphery"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Computers and Periphery").Id,
+            //        Price = 4999,
+            //        Description = "Alienware is one of the best brands for GAMING Laptops in the WORLD",
+            //        Quantity = 20,
+            //        Warranty = 36,
+            //        PicturePath = "alienware.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Acer Predator G9 15,6 inches",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Belgium"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Computers and Periphery"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Computers and Periphery").Id,
+            //        Price = 2000,
+            //        Description =
+            //            "Acer Predator is a very good gaming laptop for any type of game! And it's very cheap for it's characteristics",
+            //        Quantity = 25,
+            //        PicturePath = "acer-predator-g9.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Lenovo IDEAPAD 300 15,6 INCHES",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Computers and Periphery"),
+            //          CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Computers and Periphery").Id,
+            //        Price = 999.99m,
+            //        Description = "A very good LAPTOP for everything. I7 processor. Gotta lovei t",
+            //        Quantity = 10,
+            //        PicturePath = "lenovo_ideapad_300.png"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Laundry",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Electric Appliances"),
+            //          CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Electric Appliances").Id,
+            //        Price = 200,
+            //        Description = "A very good laundry",
+            //        Quantity = 100,
+            //        PicturePath = "laundry.png"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Stove",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Electric Appliances"),
+            //          CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Electric Appliances").Id,
+            //        Price = 250,
+            //        Description = "A very good stove",
+            //        Quantity = 100,
+            //        PicturePath = "stove.png"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "TV",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Electric Appliances"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Electric Appliances").Id,
+            //        Price = 1000,
+            //        Description = "A very good TV",
+            //        Quantity = 10,
+            //        PicturePath = "TV.png"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Jeans",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Fashion"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Fashion").Id,
+            //        Price = 60,
+            //        Description = "Very good jeans",
+            //        Quantity = 100,
+            //        PicturePath = "jeans.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "T-shirt",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //          CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Fashion"),
+            //        CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Fashion").Id,
+            //        Price = 20,
+            //        Description = "Very good t-shirt",
+            //        Quantity = 100,
+            //        PicturePath = "t-shirt.png"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Table",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Home and Furniture"),
+            //        CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Home and Furniture").Id,
+            //        Price = 140.99m,
+            //        Description = "Very good table",
+            //        Quantity = 100,
+            //        PicturePath = "table.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Bedchamber for Couple",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Home and Furniture"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Home and Furniture").Id,
+            //        Price = 239.99m,
+            //        Description = "Very good bed chamber for a lovely couple",
+            //        Quantity = 100,
+            //        PicturePath = "bedchamber.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Caterpillar",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Mobile Devicec"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Mobile Devicec").Id,
+            //        Price = 209.99m,
+            //        Description = "Very good phone for angry people!",
+            //        Quantity = 100,
+            //        PicturePath = "caterpillar.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Huawei P10",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Mobile Devicec"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Mobile Devicec").Id,
+            //        Price = 609.99m,
+            //        Description = "Very good phone for cool people!",
+            //        Quantity = 100,
+            //        PicturePath = "huaweiP10.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Iphone 7 PLUS Rose Gold",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Mobile Devicec"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Mobile Devicec").Id,
+            //        Price = 1449.99m,
+            //        Description = "Very good phone for rich people!",
+            //        Quantity = 100,
+            //        PicturePath = "iphone7_rose_gold_128gb.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Nikon",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //        CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Photo and Video"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Photo and Video").Id,
+            //        Price = 1449.99m,
+            //        Description = "Very good camera.",
+            //        Quantity = 100,
+            //        PicturePath = "nikon.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Fujifilm",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Photo and Video"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Photo and Video").Id,
+            //        Price = 1649.99m,
+            //        Description = "Very good camera.",
+            //        Quantity = 100,
+            //        PicturePath = "fujifilm.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Canon",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Photo and Video"),
+            //        CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Photo and Video").Id,
+            //        Price = 1949.99m,
+            //        Description = "Very good camera.",
+            //        Quantity = 100,
+            //        PicturePath = "canon-slr.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Basket ball",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Sport"),
+            //        CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Sport").Id,
+            //        Price = 59.99m,
+            //        Description = "Very good ball.",
+            //        Quantity = 100,
+            //        PicturePath = "basket-ball.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Football ball",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Sport"),
+            //        CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Sport").Id,
+            //        Price = 59.99m,
+            //        Description = "Very good ball.",
+            //        Quantity = 100,
+            //        PicturePath = "foot-ball.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Golf stick",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Sport"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Sport").Id,
+            //        Price = 159.99m,
+            //        Description = "Very good stick.",
+            //        Quantity = 100,
+            //        PicturePath = "golf-stick.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "ATV for Kids",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Toys"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Toys").Id,
+            //        Price = 79.99m,
+            //        Description = "Very good ATV for kids.",
+            //        Quantity = 100,
+            //        PicturePath = "kids-ride-atv.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Real Steal Robots",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Toys"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Toys").Id,
+            //        Price = 79.99m,
+            //        Description = "Toy Robots for kids.",
+            //        Quantity = 100,
+            //        PicturePath = "real-steal.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Trucks",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Toys"),
+            //         CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Toys").Id,
+            //        Price = 39.99m,
+            //        Description = "Toy Robots for kids.",
+            //        Quantity = 100,
+            //        PicturePath = "trucks_allcolors.jpg"
+            //    },
+            //    new Product()
+            //    {
+            //        Name = "Stool",
+            //        Country = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong"),
+            //         CountryId = context.Countries.FirstOrDefault(c => c.Name == "Hong Kong").Id,
+            //        Category = context.Categories.FirstOrDefault(c => c.Name == "Home and Furniture"),
+            //        CategoryId = context.Categories.FirstOrDefault(c => c.Name == "Home and Furniture").Id,
+            //        Price = 39.99m,
+            //        Description = "Very good stool",
+            //        Quantity = 100,
+            //        PicturePath = "stool.jpg"
+            //    }
+            //};
+            var serializer = new JavaScriptSerializer();
+            string json = HttpContext.Current.Server.MapPath(@"/Content/DataImports/products.json");
+            var products = serializer.Deserialize<List<Product>>(json);
+            foreach (var product in products)
             {
-                Name = "Harry Potter and The Deathly Hallows",
-                Country = context.Countries.Where(c => c.Name == "Ireland").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Books and consumptives").FirstOrDefault(),
-                Price = 20,
-                Description = "Harry Potter and the Deathly Hallows is the final book of the LEGENDARY collection Harry Potter by JK Rowling",
-                Quantity = 100,
-                PicturePath = "HarryPotterAndTheDeathlyHallows.jpg"
-
-            };
-            var product2 = new Product()
-            {
-                Name = "It",
-                Country = context.Countries.Where(c => c.Name == "Ireland").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Books and consumptives").FirstOrDefault(),
-                Price = 19.99m,
-                Description = "Stephen King's IT is a best-seller.",
-                Quantity = 150,
-                PicturePath = "StephenKingIt.jpg"
-
-            };
-            var product3 = new Product()
-            {
-                Name = "Hunger Games (All Books)",
-                Country = context.Countries.Where(c => c.Name == "Ireland").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Books and consumptives").FirstOrDefault(),
-                Price = 20,
-                Description = "Harry Potter and the Deathly Hallows is the final book of the LEGENDARY collection Harry Potter",
-                Quantity = 100,
-                PicturePath = "HarryPotterAndTheDeathlyHallows.jpg"
-
-            };
-            var product4 = new Product()
-            {
-                Name = "Alienware 17 inches",
-                Country = context.Countries.Where(c => c.Name == "Japan").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Computers and Periphery").FirstOrDefault(),
-                Price = 4999,
-                Description = "Alienware is one of the best brands for GAMING Laptops in the WORLD",
-                Quantity = 20,
-                Warranty = 36,
-                PicturePath = "alienware.jpg"
-
-            };
-            var product5 = new Product()
-            {
-                Name = "Acer Predator G9 15,6 inches",
-                Country = context.Countries.Where(c => c.Name == "Belgium").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Computers and Periphery").FirstOrDefault(),
-                Price = 2000,
-                Description = "Acer Predator is a very good gaming laptop for any type of game! And it's very cheap for it's characteristics",
-                Quantity = 25,
-                PicturePath = "acer-predator-g9.jpg"
-
-            };
-            var product6 = new Product()
-            {
-                Name = "Lenovo IDEAPAD 300 15,6 INCHES",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Computers and Periphery").FirstOrDefault(),
-                Price = 999.99m,
-                Description = "A very good LAPTOP for everything. I7 processor. Gotta lovei t",
-                Quantity = 10,
-                PicturePath = "lenovo_ideapad_300.png"
-
-            };
-
-            var product7 = new Product()
-            {
-                Name = "Laundry",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Electric Appliances").FirstOrDefault(),
-                Price = 200,
-                Description = "A very good laundry",
-                Quantity = 100,
-                PicturePath = "laundry.png"
-
-            };
-            var product8 = new Product()
-            {
-                Name = "Stove",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Electric Appliances").FirstOrDefault(),
-                Price = 250,
-                Description = "A very good stove",
-                Quantity = 100,
-                PicturePath = "stove.png"
-
-            };
-            var product9 = new Product()
-            {
-                Name = "TV",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Electric Appliances").FirstOrDefault(),
-                Price = 1000,
-                Description = "A very good TV",
-                Quantity = 10,
-                PicturePath = "TV.png"
-
-            };
-            var product10 = new Product()
-            {
-                Name = "Jeans",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Fashion").FirstOrDefault(),
-                Price = 60,
-                Description = "Very good jeans",
-                Quantity = 100,
-                PicturePath = "jeans.jpg"
-
-            };
-            var product11 = new Product()
-            {
-                Name = "T-shirt",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Fashion").FirstOrDefault(),
-                Price = 20,
-                Description = "Very good t-shirt",
-                Quantity = 100,
-                PicturePath = "t-shirt.png"
-
-            };
-            var product12 = new Product()
-            {
-                Name = "Stool",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Home and Furniture").FirstOrDefault(),
-                Price = 39.99m,
-                Description = "Very good stool",
-                Quantity = 100,
-                PicturePath = "stool.jpg"
-
-            };
-             var product26 =   new Product()
-                {
-                    Name = "Table",
-                    Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                    Category = context.Categories.Where(c => c.Name == "Home and Furniture").FirstOrDefault(),
-                    Price = 140.99m,
-                    Description = "Very good table",
-                    Quantity = 100,
-                    PicturePath = "table.jpg"
-
-                };
-            var product13 = new Product()
-            {
-                Name = "Bedchamber for Couple",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Home and Furniture").FirstOrDefault(),
-                Price = 239.99m,
-                Description = "Very good bed chamber for a lovely couple",
-                Quantity = 100,
-                PicturePath = "bedchamber.jpg"
-
-            };
-            var product14 = new Product()
-            {
-                Name = "Caterpillar",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Mobile Devices").FirstOrDefault(),
-                Price = 209.99m,
-                Description = "Very good phone for angry people!",
-                Quantity = 100,
-                PicturePath = "caterpillar.jpg"
-
-            };
-            var product15 = new Product()
-            {
-                Name = "Huawei P10",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Mobile Devices").FirstOrDefault(),
-                Price = 609.99m,
-                Description = "Very good phone for cool people!",
-                Quantity = 100,
-                PicturePath = "huaweiP10.jpg"
-
-            };
-            var product16 = new Product()
-            {
-                Name = "Iphone 7 PLUS Rose Gold",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Mobile Devices").FirstOrDefault(),
-                Price = 1449.99m,
-                Description = "Very good phone for rich people!",
-                Quantity = 100,
-                PicturePath = "iphone7_rose_gold_128gb.jpg"
-
-            };
-            var product17 = new Product()
-            {
-                Name = "Nikon",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Photo and Video").FirstOrDefault(),
-                Price = 1449.99m,
-                Description = "Very good camera.",
-                Quantity = 100,
-                PicturePath = "nikon.jpg"
-
-            };
-            var product18 = new Product()
-            {
-                Name = "Fujifilm",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Photo and Video").FirstOrDefault(),
-                Price = 1649.99m,
-                Description = "Very good camera.",
-                Quantity = 100,
-                PicturePath = "fujifilm.jpg"
-
-            };
-            var product19 = new Product()
-            {
-                Name = "Canon",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Photo and Video").FirstOrDefault(),
-                Price = 1949.99m,
-                Description = "Very good camera.",
-                Quantity = 100,
-                PicturePath = "canon-slr.jpg"
-
-            };
-            var product20 = new Product()
-            {
-                Name = "Basket ball",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Sport").FirstOrDefault(),
-                Price = 59.99m,
-                Description = "Very good ball.",
-                Quantity = 100,
-                PicturePath = "basket-ball.jpg"
-
-            };
-            var product21 = new Product()
-            {
-                Name = "Football ball",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Sport").FirstOrDefault(),
-                Price = 59.99m,
-                Description = "Very good ball.",
-                Quantity = 100,
-                PicturePath = "foot-ball.jpg"
-
-            };
-            var product22 = new Product()
-            {
-                Name = "Golf stick",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Sport").FirstOrDefault(),
-                Price = 159.99m,
-                Description = "Very good stick.",
-                Quantity = 100,
-                PicturePath = "golf-stick.jpg"
-
-            };
-            var product23 = new Product()
-            {
-                Name = "ATV for Kids",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Toys").FirstOrDefault(),
-                Price = 79.99m,
-                Description = "Very good ATV for kids.",
-                Quantity = 100,
-                PicturePath = "kids-ride-atv.jpg"
-
-            };
-
-            var product24 = new Product()
-            {
-                Name = "Real Steal Robots",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Toys").FirstOrDefault(),
-                Price = 79.99m,
-                Description = "Toy Robots for kids.",
-                Quantity = 100,
-                PicturePath = "real-steal.jpg"
-
-            };
-            var product25 = new Product()
-            {
-                Name = "Trucks",
-                Country = context.Countries.Where(c => c.Name == "Hong Kong").FirstOrDefault(),
-                Category = context.Categories.Where(c => c.Name == "Toys").FirstOrDefault(),
-                Price = 39.99m,
-                Description = "Toy Robots for kids.",
-                Quantity = 100,
-                PicturePath = "trucks_allcolors.jpg"
-
-            };
-
-            context.Products.AddOrUpdate(c => c.Name, product1, product2, product3, product4, product5, product6, product7, product8, product9, product10, product11, product12, product13, product14, product15, product16, product17, product18, product19, product20, product21, product22, product23, product24, product25, product26);
+                context.Products.AddOrUpdate(c => c.Name, product);
+            }
             context.SaveChanges();
-            //var json = JsonConvert.SerializeObject(context.Products.ToList());
-            //File.WriteAllText(@"C:\Users\Bogdan Alov\Desktop\OnlineStore\OnlineStore\Store.App\Content\DataImports\products.json", json);
-           
-
+            Console.WriteLine();
         }
 
         private void SeedCategories(StoreContext context)
@@ -364,7 +394,7 @@ namespace Store.Data.Migrations
 
             var mobile = new Category()
             {
-                Name = "Mobile Devices",
+                Name = "Mobile Devicec",
                 PicturePath = "mobile-devicec.png"
             };
 
