@@ -50,7 +50,6 @@
         protected override void Save()
         {
             ProductService mgr = new ProductService();
-            this.Entity.Id = int.Parse(this.EventArgument);
 
             if (this.Mode == "Add")
             {

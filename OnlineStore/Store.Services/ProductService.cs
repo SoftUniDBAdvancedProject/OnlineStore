@@ -1,5 +1,6 @@
 ﻿namespace Store.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Data;
@@ -30,7 +31,7 @@
 
             if (!string.IsNullOrEmpty(entity.Name))
             {
-                ret = ret.FindAll(p => p.Name.ToLower().Contains(entity.Name) || p.Description.ToLower().Contains(entity.Name));
+                ret = ret.FindAll(p => p.Name.ToLower().Contains(entity.Name.ToLower()) || p.Description.ToLower().Contains(entity.Name.ToLower()));
             }
 
             return ret;
@@ -56,18 +57,18 @@
 
             if (ret)
             {
-                using (StoreContext ctx = new StoreContext())
+                using (var context = new StoreContext())
                 {
-                    var prod = ctx.Products.Find(entity.Id);
-                    if (prod != null)
-                    {
-                        prod = entity;
-                        ctx.SaveChanges();
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    context.Products.Attach(entity);
+                    var entry = context.Entry(entity);
+                    entry.Property(e => e.Name).IsModified = true;
+                    entry.Property(e => e.PicturePath).IsModified = true;
+                    entry.Property(e => e.Price).IsModified = true;
+                    entry.Property(e => e.Quantity).IsModified = true;
+                    entry.Property(e => e.Warranty).IsModified = true;
+                    entry.Property(e => e.CategoryId).IsModified = true;
+                    entry.Property(e => e.CountryId).IsModified = true;
+                    context.SaveChanges();
                 }
             }
 
@@ -118,7 +119,16 @@
                 using (StoreContext ctx = new StoreContext())
                 {
                     ctx.Products.Add(entity);
-                    ctx.SaveChanges();
+
+                    try
+                    {
+                        ctx.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        throw;
+                    }
                 }
             }
 
