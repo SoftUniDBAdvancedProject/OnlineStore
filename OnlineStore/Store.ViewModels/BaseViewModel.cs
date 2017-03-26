@@ -102,7 +102,7 @@
             this.IsDetailAreaVisible = true;
             this.IsListAreaVisible = false;
             this.IsSearchAreaVisible = false;
-
+            
             this.Mode = "Edit";
         }
 

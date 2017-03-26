@@ -2,6 +2,8 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using System.Web.Mvc;
     using Models;
     using Services;
 
@@ -13,6 +15,10 @@
 
         public Product Entity { get; set; }
 
+        public List<SelectListItem> Categories { get; set; }
+
+        public List<SelectListItem> Countries { get; set; }
+
         protected override void Init()
         {
             this.Products = new List<Product>();
@@ -21,12 +27,13 @@
 
             base.Init();
         }
-        
+
         protected override void Add()
         {
             this.IsValid = true;
 
             this.Entity = new Product();
+            this.InitDependancies();
 
             base.Add();
         }
@@ -34,8 +41,8 @@
         protected override void Edit()
         {
             ProductService mgr = new ProductService();
-
             this.Entity = mgr.Get(Convert.ToInt32(this.EventArgument));
+            this.InitDependancies();
 
             base.Edit();
         }
@@ -43,6 +50,7 @@
         protected override void Save()
         {
             ProductService mgr = new ProductService();
+            this.Entity.Id = int.Parse(this.EventArgument);
 
             if (this.Mode == "Add")
             {
@@ -53,7 +61,7 @@
                 mgr.Update(this.Entity);
             }
 
-           this.ValidationErrors = mgr.ValidationErrors;
+            this.ValidationErrors = mgr.ValidationErrors;
 
             base.Save();
         }
@@ -64,11 +72,11 @@
 
             this.Entity = new Product();
 
-           this.Entity.Id = Convert.ToInt32(this.EventArgument);
+            this.Entity.Id = Convert.ToInt32(this.EventArgument);
 
-          mgr.Delete(this.Entity);
+            mgr.Delete(this.Entity);
 
-          this.Get();
+            this.Get();
 
             base.Delete();
         }
@@ -87,6 +95,29 @@
             this.Products = mgr.Get(this.SearchEntity);
 
             base.Get();
+        }
+
+        private void InitDependancies()
+        {
+            if (this.Categories == null)
+            {
+                var catService = new CategoryService();
+                this.Categories = catService.Get().Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                }).ToList();
+            }
+
+            if (this.Countries == null)
+            {
+                var countryService = new CountryService();
+                this.Countries = countryService.Get().Select(c => new SelectListItem
+                {
+                    Text = c.Name,
+                    Value = c.Id.ToString()
+                }).ToList();
+            }
         }
     }
 }

@@ -81,20 +81,33 @@
                 <!-- ** END MESSAGE AREA -->
                 <!-- ** BEGIN INPUT AREA -->
                 <div class="form-group">
-                    @Html.LabelFor(m => m.Entity.Name,"Product Name")
-                    @Html.TextBoxFor(m => m.Entity.Name,new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Entity.Name, "Product Name")
+                    @Html.TextBoxFor(m => m.Entity.Name, new { @class = "form-control" })
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(m =>m.Entity.Description)
-                    @Html.TextBoxFor(m =>m.Entity.Description,new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Entity.Description)
+                    @Html.TextBoxFor(m => m.Entity.Description, new { @class = "form-control" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Entity.Quantity)
-                    @Html.TextBoxFor(m => m.Entity.Quantity,new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Entity.Quantity, new { @class = "form-control" })
                 </div>
                 <div class="form-group">
                     @Html.LabelFor(m => m.Entity.Price)
-                    @Html.TextBoxFor(m => m.Entity.Price,new { @class = "form-control" })
+                    @Html.TextBoxFor(m => m.Entity.Price, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Entity.Category)
+                    @Html.DropDownListFor(m => m.Entity.CategoryId, Model.Categories, "Select Category", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Entity.Country)
+                    @Html.DropDownListFor(m => m.Entity.CountryId, Model.Countries, "Select Country", new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Entity.PicturePath, "Picture")
+                    @Html.TextBoxFor(m => m.Entity.PicturePath, new { @class = "form-control" })
+                    <input type="file" id="picture"/>
                 </div>
                 <!-- ** END INPUT AREA -->
             </div>

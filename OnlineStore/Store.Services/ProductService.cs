@@ -1,7 +1,8 @@
 ﻿namespace Store.Services
 {
-    using System;
     using System.Collections.Generic;
+    using System.Linq;
+    using Data;
     using Models;
 
     public class ProductService
@@ -20,18 +21,16 @@
 
         public List<Product> Get(Product entity)
         {
-            List<Product> ret = new List<Product>();
+            List<Product> ret;
 
-            // TODO: Add your own data access method here
-            ret = this.CreateMockData();
+            using (StoreContext ctx = new StoreContext())
+            {
+                ret = ctx.Products.ToList();
+            }
 
-            // Do any searching
             if (!string.IsNullOrEmpty(entity.Name))
             {
-                ret = ret.FindAll(
-                  p => p.Name.ToLower().
-                        StartsWith(entity.Name,
-                                  StringComparison.CurrentCultureIgnoreCase));
+                ret = ret.FindAll(p => p.Name.ToLower().Contains(entity.Name) || p.Description.ToLower().Contains(entity.Name));
             }
 
             return ret;
@@ -39,17 +38,14 @@
 
         public Product Get(int productId)
         {
-            List<Product> ret =new List<Product>();
-            Product entity = null;
+            Product ret;
 
-            // TODO: Add data access method here
-            ret = this.CreateMockData();
+            using (StoreContext ctx = new StoreContext())
+            {
+                ret = ctx.Products.Find(productId);
+            }
 
-            // Find the specific product
-            entity = ret.Find(p =>
-               p.Id == productId);
-
-            return entity;
+            return ret;
         }
 
         public bool Update(Product entity)
@@ -60,7 +56,19 @@
 
             if (ret)
             {
-                // TODO: Create UPDATE code here
+                using (StoreContext ctx = new StoreContext())
+                {
+                    var prod = ctx.Products.Find(entity.Id);
+                    if (prod != null)
+                    {
+                        prod = entity;
+                        ctx.SaveChanges();
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
             }
 
             return ret;
@@ -68,7 +76,16 @@
 
         public bool Delete(Product entity)
         {
-            // TODO: Create DELETE code here
+            using (StoreContext ctx = new StoreContext())
+            {
+                var prod = ctx.Products.Find(entity.Id);
+                if (prod != null)
+                {
+                    ctx.Products.Remove(prod);
+                    ctx.SaveChanges();
+                }
+            }
+
             return true;
         }
 
@@ -98,61 +115,14 @@
 
             if (ret)
             {
-                /// TODO: Create INSERT code here
+                using (StoreContext ctx = new StoreContext())
+                {
+                    ctx.Products.Add(entity);
+                    ctx.SaveChanges();
+                }
             }
 
             return ret;
-        }
-
-        protected List<Product> CreateMockData()
-        {
-            var products = new List<Product>
-            {
-                new Product()
-                {
-                    Id=1,
-                    Category = new Category()
-                    {
-                        Name = "Cat1"
-                    },
-                    Country = new Country() {Name = "BG"},
-                    Name = "prod1",
-                    Description = "tova e product 1",
-                    Price = 200m,
-                    Quantity = 69,
-                    Warranty = 24
-                },
-                new Product()
-                {
-                     Id=2,
-                    Category = new Category()
-                    {
-                        Name = "Cat2"
-                    },
-                    Country = new Country() {Name = "BG"},
-                    Name = "prod2",
-                    Description = "tova e product 2",
-                    Price = 200m,
-                    Quantity = 69,
-                    Warranty = 24
-                },
-                new Product()
-                {
-                     Id=3,
-                    Category = new Category()
-                    {
-                        Name = "Cat3"
-                    },
-                    Country = new Country() {Name = "BG"},
-                    Name = "prod3",
-                    Description = "tova e product 3",
-                    Price = 200m,
-                    Quantity = 69,
-                    Warranty = 24
-                }
-            };
-
-            return products;
         }
     }
 }
