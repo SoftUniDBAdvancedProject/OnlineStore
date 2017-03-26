@@ -24,6 +24,7 @@
             this.Products = new List<Product>();
             this.SearchEntity = new Product();
             this.Entity = new Product();
+            this.InitDependancies();
 
             base.Init();
         }
@@ -33,7 +34,6 @@
             this.IsValid = true;
 
             this.Entity = new Product();
-            this.InitDependancies();
 
             base.Add();
         }
@@ -42,7 +42,6 @@
         {
             ProductService mgr = new ProductService();
             this.Entity = mgr.Get(Convert.ToInt32(this.EventArgument));
-            this.InitDependancies();
 
             base.Edit();
         }
@@ -50,14 +49,16 @@
         protected override void Save()
         {
             ProductService mgr = new ProductService();
-
-            if (this.Mode == "Add")
+            if (this.IsValid)
             {
-                mgr.Insert(this.Entity);
-            }
-            else
-            {
-                mgr.Update(this.Entity);
+                if (this.Mode == "Add")
+                {
+                    mgr.Insert(this.Entity);
+                }
+                else
+                {
+                    mgr.Update(this.Entity);
+                }
             }
 
             this.ValidationErrors = mgr.ValidationErrors;
