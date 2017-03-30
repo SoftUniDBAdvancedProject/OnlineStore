@@ -7,7 +7,7 @@
     {
         public CartProductEntityConfiguration()
         {
-            this.HasKey(op => new { op.CartId, op.ProductId });
+            this.HasKey(op => new { op.CartId, op.ProductId});
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Store.Services
 {
-    class CartService
+    public class CartService
     {
     }
 }

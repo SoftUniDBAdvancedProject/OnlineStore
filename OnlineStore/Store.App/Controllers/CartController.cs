@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Store.Data;
 using Store.Models;
+using Store.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,7 +64,7 @@ namespace Store.App.Controllers
             }
 
             var products = cart.Products.ToList();
-            
+            var manager = new CartService();
 
             return this.View(products);
         }
