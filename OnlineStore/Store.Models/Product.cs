@@ -16,6 +16,7 @@
         public decimal Price { get; set; }
 
         [Required]
+        [ConcurrencyCheck]
         public double Quantity { get; set; }
 
         public int Warranty { get; set; }
