@@ -1,0 +1,40 @@
+﻿<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        @foreach (var product in Model.Products)
+        {
+            <tbody>
+                <tr>
+                    <td>@product.Name</td>
+                    <td>@product.Description</td>
+                </tr>
+            </tbody>
+
+        }
+    </table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Category Name </th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        @*@foreach (var category in Model.Categories)
+        {
+            <tbody>
+                <tr>
+                    
+                    <td>@category.Name</td>
+                </tr>
+            </tbody>
+
+        }*@
+    </table>
+</div>
+
