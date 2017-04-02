@@ -1,4 +1,5 @@
 ﻿using Store.Services;
+using Store.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,12 @@ namespace Store.App.Controllers
 
             var products = managerProducts.Get();
             var categories = managerCategories.Get();
-            var generic = new { Products = products, Categories = categories };
-            return View(generic);
+            var model = new ShopViewModel()
+            {
+                Categories = categories,
+                Products = products,
+            };
+            return View(model);
         }
     }
 }

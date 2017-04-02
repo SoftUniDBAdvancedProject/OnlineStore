@@ -2,6 +2,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Image</th>
                 <th>Product Name</th>
                 <th>Description</th>
             </tr>
@@ -10,6 +11,7 @@
         {
             <tbody>
                 <tr>
+                    <td><img src="@Url.Content("~"+ Model.PicturePath + product.Category.Name + "/" + product.PicturePath)" alt="Product Picture"  /></td>
                     <td>@product.Name</td>
                     <td>@product.Description</td>
                 </tr>
@@ -25,7 +27,7 @@
                 <th>Description</th>
             </tr>
         </thead>
-        @*@foreach (var category in Model.Categories)
+        @foreach (var category in Model.Categories)
         {
             <tbody>
                 <tr>
@@ -34,7 +36,7 @@
                 </tr>
             </tbody>
 
-        }*@
+        }
     </table>
 </div>
 

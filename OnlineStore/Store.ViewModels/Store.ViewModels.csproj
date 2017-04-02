@@ -74,6 +74,7 @@
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShopViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Store.Models\Store.Models.csproj">
