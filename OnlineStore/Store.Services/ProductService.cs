@@ -1,7 +1,7 @@
 ﻿namespace Store.Services
 {
-    using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Linq;
     using Data;
     using Models;
@@ -60,15 +60,7 @@
                 using (var context = new StoreContext())
                 {
                     context.Products.Attach(entity);
-                    var entry = context.Entry(entity);
-                    entry.Property(e => e.Name).IsModified = true;
-                    entry.Property(e => e.Description).IsModified = true;
-                    entry.Property(e => e.PicturePath).IsModified = true;
-                    entry.Property(e => e.Price).IsModified = true;
-                    entry.Property(e => e.Quantity).IsModified = true;
-                    entry.Property(e => e.Warranty).IsModified = true;
-                    entry.Property(e => e.CategoryId).IsModified = true;
-                    entry.Property(e => e.CountryId).IsModified = true;
+                    context.Entry(entity).State = EntityState.Modified;
                     context.SaveChanges();
                 }
             }
@@ -112,9 +104,7 @@
         public bool Insert(Product entity)
         {
             bool ret = false;
-
             ret = this.Validate(entity);
-
             if (ret)
             {
                 using (StoreContext ctx = new StoreContext())

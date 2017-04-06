@@ -10,6 +10,7 @@
 
     public class ProductViewModel : BaseViewModel
     {
+        private const string DefaultPicturesPath = "/Content/Images/Products/";
         public List<Product> Products { get; set; }
 
         public Product SearchEntity { get; set; }
@@ -32,7 +33,7 @@
                 }
 
                 var category = this.Categories.First(x => x.Value == this.Entity.CategoryId.ToString()).Text;
-                string nameAndLocation = "/Content/Images/Products/" + category + "/";
+                string nameAndLocation = $"{DefaultPicturesPath}{category}/";
                 return nameAndLocation;
             }
         }
@@ -107,13 +108,8 @@
         protected override void Delete()
         {
             ProductService mgr = new ProductService();
-
-            this.Entity = new Product();
-
-            this.Entity.Id = Convert.ToInt32(this.EventArgument);
-
+            this.Entity = new Product {Id = Convert.ToInt32(this.EventArgument)};
             mgr.Delete(this.Entity);
-
             this.Get();
 
             base.Delete();

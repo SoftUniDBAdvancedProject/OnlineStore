@@ -1,4 +1,6 @@
-﻿<div class="row">
+﻿@model Store.ViewModels.ShopViewModel
+
+<div class="row">
     <table class="table">
         <thead>
             <tr>
@@ -11,7 +13,7 @@
         {
             <tbody>
                 <tr>
-                    <td><img src="@Url.Content("~"+ Model.PicturePath + product.Category.Name + "/" + product.PicturePath)" alt="Product Picture"  /></td>
+                    @*<td><img src="@Url.Content("~"+ Model.PicturePath + product.Category.Name + "/" + product.PicturePath)" alt="Product Picture"  /></td>*@
                     <td>@product.Name</td>
                     <td>@product.Description</td>
                 </tr>

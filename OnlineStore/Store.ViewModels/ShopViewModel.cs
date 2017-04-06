@@ -18,8 +18,8 @@ namespace Store.ViewModels
             this.Products = new HashSet<Product>();
         }
 
-        public virtual ICollection<Category> Categories { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
+        public ICollection<Category> Categories { get; set; }
+        public ICollection<Product> Products { get; set; }
 
 
 

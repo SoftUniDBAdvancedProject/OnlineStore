@@ -17,7 +17,7 @@ namespace Store.App.Controllers
         public ActionResult Index()
         {
             var products = this.Data.Products.Where(c => c.Quantity > 0).ToList();
-            return View(products);
+            return this.View(products);
         }
 
         public CartController(Context data) : base(data)
