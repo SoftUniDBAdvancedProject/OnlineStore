@@ -3,35 +3,53 @@
     ViewBag.Title = "Home";
 }
 
-<div class="row">
-    <div class="col-lg-offset-9 col-lg-3">
-        <h4>Latest products: </h4>
-        <div class="panel panel-default pull-right">
-            <div class="panel-body">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
-                            <tr>
-
-                                <th>Product Name</th>
-                                <th>Description</th>
-                            </tr>
-                        </thead>
-                        @foreach (var product in Model)
-                        {
-                            <tbody>
-                                <tr>
-                                    <td>@product.Name</td>
-                                    <td>@product.Description</td>
-                                </tr>
-                            </tbody>
-
-                        }
-                    </table>
+@section slideshow{
+    <div class="home-slide">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="slide-caption">
+                        <span class="caption-header">NEW SEASON ARRIVALS.</span>
+                        <span class="caption-subheader">Check aout all the new Products</span>
+                        <a href="/Shop">Shop Now</a>
+                    </div>
                 </div>
             </div>
-
         </div>
 
     </div>
+}
+
+<div class="row">
+    <div class="text-center">
+        <h2 class="titleLine">Latest Products</h2>
+    </div>
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4">
+            <div class="home-product">
+                <img src='~/Content/Images/Products/@product.FullPicturePath' />
+                <span class="home-product-name">@product.Name</span>
+                <span class="home-product-description">@product.Description</span>
+                <span class="home-product-price">$@product.Price</span>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row">
+    <div class="text-center">
+        <h2 class="titleLine">Popular Products</h2>
+    </div>
+    @foreach (var product in Model)
+    {
+        <div class="col-md-4">
+            <div class="home-product">
+                <img src='~/Content/Images/Products/@product.FullPicturePath' />
+                <span class="home-product-name">@product.Name</span>
+                <span class="home-product-description">@product.Description</span>
+                <span class="home-product-price">$@product.Price</span>
+            </div>
+        </div>
+    }
 </div>

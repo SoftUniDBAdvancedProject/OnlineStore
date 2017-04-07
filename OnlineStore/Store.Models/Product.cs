@@ -1,6 +1,7 @@
 ﻿namespace Store.Models
 {
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Product
     {
@@ -33,5 +34,8 @@
 
         [Required]
         public string PicturePath { get; set; }
+
+        [NotMapped]
+        public string FullPicturePath { get { return $"{this.Category.Name}/{this.PicturePath}"; } }
     }
 }

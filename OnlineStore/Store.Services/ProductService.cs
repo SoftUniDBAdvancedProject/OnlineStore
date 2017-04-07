@@ -26,7 +26,7 @@
 
             using (StoreContext ctx = new StoreContext())
             {
-                ret = ctx.Products.ToList();
+                ret = ctx.Products.Include(path => path.Category).ToList();
             }
 
             if (!string.IsNullOrEmpty(entity.Name))
