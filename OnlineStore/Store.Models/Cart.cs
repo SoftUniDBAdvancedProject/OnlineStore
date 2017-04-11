@@ -10,6 +10,6 @@
         public int Id { get; set; }
         public virtual User User { get; set; }
 
-        public virtual ICollection<CartProduct> Products => this.products ?? (this.products = new HashSet<CartProduct>());
+        public virtual ICollection<CartProduct> Products => this.products ?? (this.products = new List<CartProduct>());
     }
 }

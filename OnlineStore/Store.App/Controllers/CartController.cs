@@ -11,62 +11,83 @@ using System.Web.Mvc;
 
 namespace Store.App.Controllers
 {
+    using System.Data.Entity;
+
+    [Authorize]
     public class CartController : BaseController
     {
+        public CartController(Context data) : base(data)
+        {
+        }
+
         // GET: Cart
         public ActionResult Index()
         {
-            var products = this.Data.Products.Where(c => c.Quantity > 0).ToList();
-            return this.View(products);
-        }
+            var cart = this.GetCartOfCurrentUser();
 
-        public CartController(Context data) : base(data)
-        {
-
-        }
-
-        [Authorize]
-        public ActionResult AddToCart(int? id)
-        {
-            if (id == null)
+            if (cart.Products.Count == 0)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return this.View("EmptyCart");
             }
 
+            return this.View(cart);
+        }
+
+        public ActionResult AddToCart(int id)
+        {
             Product product = this.Data.Products.Find(id);
             if (product == null)
             {
                 return this.HttpNotFound();
             }
 
-            var cartProduct = new Product()
+            var cart = this.GetCartOfCurrentUser();
+            var cartProduct = cart.Products.FirstOrDefault(cp => cp.ProductId == id);
+
+            if (cartProduct == null)
             {
-                Id = product.Id,
-                Name = product.Name,
-                Price = product.Price,
-               PicturePath = product.PicturePath,
-                Quantity = product.Quantity
-            };
-
-            return this.View(cartProduct);
-        }
-
-
-        [Authorize]
-        public ActionResult MyCart()
-        {
-            string currentUserId = this.User.Identity.GetUserId();
-            var cart = this.Data.Carts.FirstOrDefault(u => u.User.Id == currentUserId);
-
-            if (cart == null || cart.Products.Count == 0)
-            {
-                return this.View("EmptyCart");
+                cartProduct = new CartProduct
+                {
+                    ProductId = id,
+                    Cart = cart,
+                    Quantity = 0
+                };
             }
 
-            var products = cart.Products.ToList();
-            var manager = new CartService();
+            cartProduct.Quantity++;
 
-            return this.View(products);
+            cart.Products.Add(cartProduct);
+            this.Data.SaveChanges();
+
+            return this.RedirectToAction("Index");
+        }
+
+        public ActionResult RemoveFromCart(int id)
+        {
+            var cart = this.GetCartOfCurrentUser();
+            var cartProduct = cart.Products.FirstOrDefault(cp => cp.ProductId == id);
+            cart.Products.Remove(cartProduct);
+            this.Data.SaveChanges();
+        
+            return this.RedirectToAction("Index");
+        }
+
+        public ActionResult FinalizePurchase(int cartId)
+        {
+            // TODO:
+            return this.View();
+        }
+
+        private Cart GetCartOfCurrentUser()
+        {
+            var cart = this.Data.Carts.Include(c=>c.Products).FirstOrDefault(c => c.User.Id == this.UserProfile.Id);
+            if (cart == null)
+            {
+                cart = new Cart();
+                this.UserProfile.Cart = cart;
+            }
+
+            return cart;
         }
     }
 }

@@ -43,7 +43,7 @@
 
             using (StoreContext ctx = new StoreContext())
             {
-                ret = ctx.Products.Find(productId);
+                ret = ctx.Products.Include(p => p.Category).FirstOrDefault(p => p.Id == productId);
             }
 
             return ret;
