@@ -177,21 +177,21 @@ h2 {
         width: 100%;
     }
 
-.single-product a {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 5px 5px 5px 30px;
-    background: url('Images/Site/Icons/cart-icon.png') no-repeat 5px center;
-    border: 1px solid #000;
-    border-radius: 5px;
-}
+    .single-product a {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 5px 5px 5px 30px;
+        background: url('Images/Site/Icons/cart-icon.png') no-repeat 5px center;
+        border: 1px solid #000;
+        border-radius: 5px;
+    }
 
-.single-product a:hover {
-    opacity: 0.8;
-    color: #000;
-    border-color: green;
-    text-decoration: none;
-}
+        .single-product a:hover {
+            opacity: 0.8;
+            color: #000;
+            border-color: green;
+            text-decoration: none;
+        }
 
 .product-description {
     display: block;
@@ -218,52 +218,54 @@ h2 {
 
 /*footer*/
 
-footer
-{
-    padding: 60px 0px;    
+footer {
+    padding: 60px 0px;
     width: 100%;
-
 }
 
-footer nav 
-{
-    background-color: #bababa;
-    width: 100%;
-    float: left;
-}
+    footer nav {
+        border-top: 2px solid #000;
+        background-color: #bababa;
+        width: 100%;
+        float: right;
+    }
 
-footer nav ul 
-{
-    margin-top: 40px;
-    margin-bottom: 50px;
-    
-}
+        footer nav  ul  {
+            margin-top: 40px;
+            margin-bottom: 50px;
+        }
 
-footer nav ul li 
-{
-    display: inline-block;
-    margin-left: 150px;
-    list-style: none;
-}
+            footer nav  ul li  {
+                display: inline-block;
+                margin-left: 150px;
+                list-style: none;
+            }
 
 
-footer nav ul li a 
-{
-    font-family: footer;
-    font-weight: 400;
-    font-size: 20px;
-    color: white;
-    text-decoration: none;
-    
-}
+                footer nav  ul li a {
+                    font-family: footer;
+                    font-weight: 400;
+                    font-size: 20px;
+                    color: white;
+                    text-decoration: none;
+                }
 
-footer nav ul li a :hover
-{
-    font-family: footer;
-    font-weight: 400;
-    font-size: 20px;
-    color: white;
-    text-decoration: none;
-    
-}
+                    footer nav ul li a :hover {
+                        font-family: footer;
+                        font-weight: 400;
+                        font-size: 20px;
+                        color: white;
+                        text-decoration: none;
+                    }
+
+                    footer nav  p{
+                        float:right;
+                        font-family: footer;
+                        color: white;
+                        font-weight:400;
+                        font-size: 20px;
+                        margin-top: 50px;
+                        margin-bottom: 50px;
+                        margin-right: 90px;
+                    }
 

@@ -24,8 +24,6 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (User.IsInRole("Admin"))
                     {
                         <li>@Html.ActionLink("Control panel", "Index", "Home", new { area = "Admin" }, null)</li>
@@ -46,16 +44,14 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <hr />
     <footer>
-        <div class="wrapper">
+        <div>
             <nav>
-                <ul>
-                    <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
+                @*<ul>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("© 2017 - Store inc.", "Index", "Shop")</li>
-                </ul>
+                </ul>*@
+                <p>© 2017 - Store inc.</p>
             </nav>    
         </div>
     </footer>
