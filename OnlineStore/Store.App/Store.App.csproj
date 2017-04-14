@@ -236,6 +236,7 @@
     <Content Include="Content\Images\Products\Photo and Video\canon-slr.jpg" />
     <Content Include="Content\Images\Products\Sport\basket-ball.jpg" />
     <Content Include="Content\Images\Products\Toys\kids-ride-atv.jpeg" />
+    <Content Include="Content\Images\Site\dubaimall.jpg" />
     <Content Include="Content\Images\Site\Icons\cart-icon.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -303,12 +304,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Shop\Index.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\EmptyCart.cshtml" />
+    <Content Include="Views\Shop\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\Cart\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Project_Readme.html" />

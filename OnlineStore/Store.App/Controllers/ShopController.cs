@@ -3,6 +3,7 @@
     using Services;
     using ViewModels;
     using System.Web.Mvc;
+    using Store.Models;
 
     public class ShopController : Controller
     {
@@ -21,6 +22,14 @@
             };
 
             return this.View(model);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var managerProducts = new ProductService();
+            var product = managerProducts.Get(id);
+
+            return this.View(product);
         }
     }
 }

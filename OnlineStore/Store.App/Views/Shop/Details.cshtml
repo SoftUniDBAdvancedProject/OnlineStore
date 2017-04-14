@@ -1,0 +1,17 @@
+﻿@model Store.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="row single-product">
+    <div class="col-md-3">
+        <img src='~/Content/Images/Products/@Model.FullPicturePath' />
+    </div>
+    <div class="col-md-9">
+        <span class="home-product-name">@Model.Name</span>
+        <span class="product-description">@Model.Description</span>
+        <span class="home-product-price">$@Model.Price</span>
+        @Html.ActionLink("Add to cart", "AddToCart", "Cart", new { Model.Id }, new { calss = "addtocart-btn" })
+    </div>
+</div>

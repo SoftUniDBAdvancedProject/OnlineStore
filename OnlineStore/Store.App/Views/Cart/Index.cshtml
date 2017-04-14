@@ -1,0 +1,29 @@
+﻿@model Store.Models.Cart
+@{
+    ViewBag.Title = "Index";
+}
+<div class="row">
+    <div class="col-sm-9">
+        @foreach (var product in Model.Products)
+        {
+            <div class="row single-product">
+                <div class="col-md-3">
+                    <img src='~/Content/Images/Products/@product.Product.FullPicturePath' />
+                </div>
+                <div class="col-md-9">
+                    <span class="home-product-name">@product.Product.Name</span>
+                    <span class="product-description">@product.Product.Description</span>
+                    <span class="product-quantity">Quantity: @product.Quantity - price: $@product.Product.Price</span>
+                    <span class="home-product-price">Total: $@(product.Product.Price * (decimal)product.Quantity)</span>
+                    @Html.ActionLink("Remove", "RemoveFromCart", "Cart", new { product.Product.Id }, new { calss = "remove-btn" })
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-sm-3">
+        <div>
+            Cart Total: @(Model.Products.Sum(p => (decimal)p.Quantity * p.Product.Price))
+        </div>
+        @Html.ActionLink("Finalize Purchase", "FinalizePurchase", "Cart", new {cartId = Model.Id}, new {calss = "remove-btn"})
+    </div>
+</div>
