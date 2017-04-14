@@ -42,14 +42,22 @@
 
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Storeline</p>
-        </footer>
     </div>
-
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <hr />
+    <footer>
+        <div class="wrapper">
+            <nav>
+                <ul>
+                    <li>@Html.ActionLink("Shop", "Index", "Shop")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("© 2017 - Store inc.", "Index", "Shop")</li>
+                </ul>
+            </nav>    
+        </div>
+    </footer>
 </body>
 </html>
