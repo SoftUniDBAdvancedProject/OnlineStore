@@ -9,7 +9,7 @@
     public class ShopController : Controller
     {
         // GET: Shop
-        public ActionResult Index(string category = null)
+        public ActionResult Index(int page = 1, int count = 6, string category = null)
         {
             var managerProducts = new ProductService();
             var managerCategories = new CategoryService();
@@ -20,6 +20,15 @@
             {
                 products = products.Where(p => p.Category.Name == category).ToList();
             }
+
+            int productsCount = products.Count;
+            products = products.Skip((page - 1) * count)
+                .Take(count)
+                .ToList();
+            
+            this.ViewBag.TotalPages = (productsCount + count - 1) / count;
+            this.ViewBag.CurrentPage = page;
+            this.ViewBag.CurrentCategory = category;
 
             var model = new ShopViewModel
             {

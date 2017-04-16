@@ -15,10 +15,29 @@
             }
         </section>
     </div>
+
     <div class="col-md-9">
         <div class="row">
             @Html.DisplayFor(m => m.Products)
         </div>
     </div>
+    
+    @if (ViewBag.TotalPages > 1)
+    {
+        <div class="col-md-9 col-md-offset-3">
+            <ul class="pagination">
+                @for (int page = 1; page <= ViewBag.TotalPages; page++)
+                {
+                    string listItemClass = string.Empty;
+                    if (page == ViewBag.CurrentPage)
+                    {
+                        listItemClass = "active";
+                    }
+
+                    <li class="@listItemClass">@Html.ActionLink(page.ToString(), "Index", "Shop", routeValues: new {page = page, count = 6, category = ViewBag.CurrentCategory}, htmlAttributes: null)</li>
+                }
+            </ul>
+        </div>
+    }
 </div>
 
