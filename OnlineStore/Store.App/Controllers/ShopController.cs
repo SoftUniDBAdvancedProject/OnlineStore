@@ -1,5 +1,6 @@
 ﻿namespace Store.App.Controllers
 {
+    using System.Linq;
     using Services;
     using ViewModels;
     using System.Web.Mvc;
@@ -8,13 +9,18 @@
     public class ShopController : Controller
     {
         // GET: Shop
-        public ActionResult Index()
+        public ActionResult Index(string category = null)
         {
             var managerProducts = new ProductService();
             var managerCategories = new CategoryService();
 
             var products = managerProducts.Get();
             var categories = managerCategories.Get();
+            if (category !=null)
+            {
+                products = products.Where(p => p.Category.Name == category).ToList();
+            }
+
             var model = new ShopViewModel
             {
                 Categories = categories,

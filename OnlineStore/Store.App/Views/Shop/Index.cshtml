@@ -1,6 +1,28 @@
 ﻿@model Store.ViewModels.ShopViewModel
 
 <div class="row">
-    @Html.DisplayFor(m => m.Products)
+    <div class="col-sm-3">
+        <h3>Categories</h3>
+        <ul>
+            <li>
+                <a href="/Shop/Index/">
+                    <p>All</p>
+                </a>
+            </li>
+            @foreach (var category in Model.Categories)
+            {
+                <li>
+                    <a href="/Shop/Index/?category=@category.Name">
+                        <p>@category.Name</p>
+                    </a>
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            @Html.DisplayFor(m => m.Products)
+        </div>
+    </div>
 </div>
 
