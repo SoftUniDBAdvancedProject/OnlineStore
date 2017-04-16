@@ -1,44 +1,6 @@
 ﻿@model Store.ViewModels.ShopViewModel
 
 <div class="row">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Image</th>
-                <th>Product Name</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        @foreach (var product in Model.Products)
-        {
-            <tbody>
-                <tr>
-                    @*<td><img src="@Url.Content("~"+ Model.PicturePath + product.Category.Name + "/" + product.PicturePath)" alt="Product Picture"  /></td>*@
-                    <td>@product.Name</td>
-                    <td>@product.Description</td>
-                </tr>
-            </tbody>
-
-        }
-    </table>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Category Name </th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        @foreach (var category in Model.Categories)
-        {
-            <tbody>
-                <tr>
-                    
-                    <td>@category.Name</td>
-                </tr>
-            </tbody>
-
-        }
-    </table>
+    @Html.DisplayFor(m => m.Products)
 </div>
 

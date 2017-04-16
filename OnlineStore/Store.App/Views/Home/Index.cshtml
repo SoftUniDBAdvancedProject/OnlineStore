@@ -25,32 +25,12 @@
     <div class="text-center">
         <h2 class="titleLine">Latest Products</h2>
     </div>
-    @foreach (var product in Model)
-    {
-        <div class="col-md-4">
-            <div class="home-product">
-                <img src='~/Content/Images/Products/@product.FullPicturePath' />
-                <span class="home-product-name">@product.Name</span>
-                <span class="home-product-price">$@product.Price</span>
-                @Html.ActionLink("Add to cart", "Details", "Shop", new { id = product.Id }, null)
-            </div>
-        </div>
-    }
+    @Html.DisplayFor(m => m)
 </div>
 
 <div class="row">
     <div class="text-center">
         <h2 class="titleLine">Popular Products</h2>
     </div>
-    @foreach (var product in Model)
-    {
-        <div class="col-md-4">
-            <div class="home-product">
-                <img src='~/Content/Images/Products/@product.FullPicturePath' />
-                <span class="home-product-name">@product.Name</span>
-                <span class="home-product-description">@product.Description</span>
-                <span class="home-product-price">$@product.Price</span>
-            </div>
-        </div>
-    }
+    @Html.DisplayFor(m => m)
 </div>

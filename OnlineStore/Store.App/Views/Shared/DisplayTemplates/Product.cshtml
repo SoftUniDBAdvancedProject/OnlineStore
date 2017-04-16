@@ -1,0 +1,10 @@
+﻿@model Store.Models.Product
+
+<div class="col-md-4">
+    <div class="home-product">
+        <img src='~/Content/Images/Products/@Model.FullPicturePath' />
+        <span class="home-product-name">@Model.Name</span>
+        <span class="home-product-price">$@Model.Price</span>
+        @Html.ActionLink("Add to cart", "Details", "Shop", new { id = Model.Id }, null)
+    </div>
+</div>
