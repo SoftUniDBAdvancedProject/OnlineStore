@@ -79,13 +79,14 @@ h2 {
 }
 
 .slide-caption {
-    background: #FFF;
+    background:  #ffffff;
+    background:  rgba(255,255,255,0.7);
     padding: 10px 50px;
     position: absolute;
     top: 110px;
 }
 
-    .slide-caption .caption-header {
+.slide-caption .caption-header {
         display: block;
         text-transform: uppercase;
         font: 700 24px 'Arial';
@@ -106,7 +107,6 @@ h2 {
         font: 700 24px 'Arial';
         padding: 10px;
         margin: 20px 0;
-        background: #FFF;
     }
 
         .slide-caption a:hover {
