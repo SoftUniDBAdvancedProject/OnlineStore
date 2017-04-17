@@ -68,22 +68,59 @@ namespace Store.App.Controllers
             var cartProduct = cart.Products.FirstOrDefault(cp => cp.ProductId == id);
             cart.Products.Remove(cartProduct);
             this.Data.SaveChanges();
-        
+
             return this.RedirectToAction("Index");
         }
 
         public ActionResult FinalizePurchase(int cartId)
         {
-            // TODO:
-            
-            
+            var cart = this.GetCartOfCurrentUser();
+            if (cart.Products.Count == 0)
+            {
+                return this.RedirectToAction("Index");
+            }
 
-            return this.View();
+            foreach (var product in cart.Products)
+            {
+                var soldProduct = this.Data.Products.FirstOrDefault(p => p.Id == product.ProductId);
+                if (soldProduct == null)
+                {
+                    cart.Products.Remove(product);
+                    return this.RedirectToAction("Index");
+                }
+                
+                if (soldProduct.Quantity - product.Quantity < 0)
+                {
+                    product.Quantity = soldProduct.Quantity;
+                    return this.RedirectToAction("Index");
+                }
+            }
+
+          
+            var order = new Order() { UserId = this.UserProfile.Id };
+            foreach (var product in cart.Products)
+            {
+                var soldProduct = this.Data.Products.FirstOrDefault(p => p.Id == product.ProductId);
+                soldProduct.Quantity -= product.Quantity;
+                var orderedProduct = new OrderProduct()
+                {
+                    Product = soldProduct,
+                    Quantity = product.Quantity,
+                    Order = order
+                };
+
+                order.Products.Add(orderedProduct);
+            }
+
+            cart.Products.Clear();
+            this.Data.SaveChanges();
+
+            return this.View(order);
         }
 
         private Cart GetCartOfCurrentUser()
         {
-            var cart = this.Data.Carts.Include(c=>c.Products).FirstOrDefault(c => c.User.Id == this.UserProfile.Id);
+            var cart = this.Data.Carts.Include(c => c.Products).FirstOrDefault(c => c.User.Id == this.UserProfile.Id);
             if (cart == null)
             {
                 cart = new Cart();

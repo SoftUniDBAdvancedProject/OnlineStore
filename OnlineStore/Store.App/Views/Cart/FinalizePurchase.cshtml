@@ -1,0 +1,11 @@
+﻿@model Store.Models.Order
+    
+<h2>Thank You For Your Purchase</h2>
+<p>Products:</p>
+@foreach (var product in Model.Products)
+{
+    <p>@product.Product.Name, @product.Quantity * @product.Product.Price</p>
+}
+
+<hr/>
+<p><b>Total sum: @Model.Products.Sum(p=> (decimal)p.Quantity* p.Product.Price)</b></p>
